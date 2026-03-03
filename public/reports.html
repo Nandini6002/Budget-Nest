@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Budget Nest - Reports</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #b7d7f3;
+      color: #333;
+      padding-bottom: 40px;
+    }
+    nav {
+      background: rgb(29, 169, 194);
+      padding: 15px 30px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: fixed; width: 100%; top: 0; left: 0; z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: white; text-decoration: none; margin-left: 20px; font-size: 18px;
+    }
+    nav a:hover { color: #004e7c; }
+    header {
+      margin-top: 70px;
+      background: linear-gradient(90deg, white, rgb(148,212,186));
+      padding: 25px;
+      text-align: center;
+      border-radius: 0 0 20px 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-size: 24px; color: #2d2d2d;
+    }
+
+    .main-section {
+      display: flex; flex-wrap: wrap;
+      gap: 30px;
+      padding: 40px;
+      justify-content: center;
+    }
+    .form-box, .table-box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      flex: 1; min-width: 350px;
+    }
+    label { margin-top: 15px; display: block; font-weight: 500; }
+    input, select, button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    input, select { background: #f1faff; }
+    button {
+      background: rgb(29,169,194);
+      color: white;
+      margin-top: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover { background: #218aa6; }
+
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc; padding: 10px; text-align: center;
+    }
+    th {
+      background: rgb(29,169,194); color: white;
+    }
+
+    .options {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .options h3 {
+      margin-bottom: 15px;
+      color: #1c6b80;
+    }
+    .toggle-group {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .toggle-btn {
+      background: #e6f2ff;
+      color: #1c6b80;
+      padding: 10px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s, color 0.3s;
+    }
+    .toggle-btn.active {
+      background: rgb(29,169,194);
+      color: white;
+    }
+
+    .charts-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      padding: 20px;
+    }
+    .chart-box {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      width: calc(45% - 20px);
+      min-width: 300px;
+    }
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="getstartedpage.html">BUDGETNEST</a>
+    <div class="nav-links">
+      <a href="homepage.html">Home</a>
+      <a href="reports.html">Reports</a>
+      <a href="settings.html">Settings</a>
+      <a href="login.html">Logout</a>
+    </div>
+  </nav>
+
+  <header>
+    <h1>Expense Report</h1>
+  </header>
+
+  <div class="main-section">
+    <div class="form-box">
+      <h2>Enter Salary & Expense</h2>
+      <form id="expenseForm">
+        <label>Salary Type</label>
+        <select id="salaryType" required>
+          <option value="" disabled selected>Select Type</option>
+          <option value="Monthly">Monthly</option>
+          <option value="Weekly">Weekly</option>
+        </select>
+        <label>Salary Amount</label><input type="number" id="salaryAmount" required placeholder="e.g., 1000">
+        <label>Expense Name</label><input type="text" id="expenseName" required placeholder="e.g., Groceries">
+        <label>Expense Price</label><input type="number" id="expenseAmount" required placeholder="e.g., 500">
+        <button type="submit">Add Expense</button>
+      </form>
+
+      <div class="options">
+        <h3>Select Charts to Show</h3>
+        <div class="toggle-group">
+          <div class="toggle-btn" data-type="monthly-bar">Monthly Budget vs Expenses</div>
+          <div class="toggle-btn" data-type="weekly-bar">Weekly Budget vs Expenses</div>
+          <div class="toggle-btn" data-type="monthly-pie">Monthly Expense Distribution</div>
+          <div class="toggle-btn" data-type="weekly-pie">Weekly Expense Distribution</div>
+        </div>
+        <button id="generateChartsBtn">Generate Charts</button>
+      </div>
+    </div>
+
+    <div class="table-box">
+      <h2>Expense Summary</h2>
+      <table id="expenseTable">
+        <thead><tr><th>Name</th><th>Price</th><th>Remaining</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="charts-container" id="chartsContainer"></div>
+
+  <script>
+    const form = document.getElementById('expenseForm');
+    const tableBody = document.querySelector('#expenseTable tbody');
+    const chartsContainer = document.getElementById('chartsContainer');
+    const toggleBtns = document.querySelectorAll('.toggle-btn');
+    const generateBtn = document.getElementById('generateChartsBtn');
+
+    const user = sessionStorage.getItem('username');
+    if (!user) {
+      alert('User not found. Please login again.');
+      window.location.href = 'login.html';
+    }
+
+    let salary = 0, remaining = 0;
+    let expenses = [], activeCharts = [];
+
+    // Fetch saved expenses
+    fetch(`http://localhost:3001/api/expenses/${user}`)
+      .then(res => res.json())
+      .then(data => {
+        expenses = data.filter(e => e.amount !== null);
+        const salaryEntry = data.find(e => e.salaryAmount !== null);
+        if (salaryEntry) {
+          salary = salaryEntry.salaryAmount;
+          remaining = salary - expenses.reduce((sum, e) => sum + e.amount, 0);
+        }
+        expenses.forEach(e => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${e.name}</td><td>₹${e.amount.toFixed(2)}</td><td>₹${remaining.toFixed(2)}</td>`;
+          tableBody.appendChild(row);
+          remaining -= e.amount;
+        });
+      });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const salaryType = document.getElementById('salaryType').value;
+      const salaryInput = parseFloat(document.getElementById('salaryAmount').value);
+      const name = document.getElementById('expenseName').value;
+      const amount = parseFloat(document.getElementById('expenseAmount').value);
+
+      if (!salary) {
+        salary = salaryInput;
+        remaining = salaryInput;
+      }
+      if (amount > remaining) {
+        alert('Expense exceeds remaining salary!');
+        return;
+      }
+
+      fetch('http://localhost:3001/api/expense', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user, salaryType, salaryAmount: salaryInput, name, amount })
+      })
+      .then(res => res.json())
+      .then(data => {
+        expenses.push({ name, amount });
+        remaining -= amount;
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${name}</td><td>₹${amount.toFixed(2)}</td><td>₹${remaining.toFixed(2)}</td>`;
+        tableBody.appendChild(row);
+        document.getElementById('expenseName').value = '';
+        document.getElementById('expenseAmount').value = '';
+      });
+    });
+
+    toggleBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('active');
+        const type = btn.dataset.type;
+        if (btn.classList.contains('active')) {
+          if (!activeCharts.includes(type)) activeCharts.push(type);
+        } else {
+          activeCharts = activeCharts.filter(t => t !== type);
+        }
+      });
+    });
+
+    generateBtn.addEventListener('click', () => {
+      chartsContainer.innerHTML = '';
+      const totalExp = expenses.reduce((sum, e) => sum + e.amount, 0);
+      activeCharts.forEach(type => {
+        const box = document.createElement('div');
+        box.className = 'chart-box';
+        const canvas = document.createElement('canvas');
+        box.appendChild(canvas);
+        chartsContainer.appendChild(box);
+        const ctx = canvas.getContext('2d');
+
+        const chartData = {
+          labels: ['Budget', 'Spent'],
+          datasets: [{ data: [salary, totalExp], backgroundColor: ['#94d4e6','#ff9999'] }]
+        };
+
+        const pieData = {
+          labels: expenses.map(e => e.name),
+          datasets: [{ data: expenses.map(e => e.amount), backgroundColor: ['#ff9999','#94d4e6','#ffff99','#99ff99','#99ccff'] }]
+        };
+
+        if (type === 'monthly-bar') new Chart(ctx, { type: 'bar', data: chartData });
+        if (type === 'weekly-bar') new Chart(ctx, { type: 'bar', data: { ...chartData, datasets: [{ data: [salary/4, totalExp/4], backgroundColor: ['#94d4e6','#ff9999'] }] } });
+        if (type === 'monthly-pie') new Chart(ctx, { type: 'pie', data: pieData });
+        if (type === 'weekly-pie') new Chart(ctx, { type: 'pie', data: { ...pieData, datasets: [{ data: expenses.map(e => e.amount / 4), backgroundColor: pieData.datasets[0].backgroundColor }] } });
+      });
+    });
+  </script>
+</body>
+</html>

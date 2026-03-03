@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+   <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: flex;
+    background: white;
+    color: #003366;
+}
+nav {
+    background-color: rgb(29, 169, 194);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0
+, 0, 0, 0.1);
+}
+
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #004e7c;
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin: 10px 0;
+    }
+}
+
+
+
+.sidebar {
+    width: 240px;
+    height: 100vh;
+    background: white;
+    padding: 20px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+
+.profile {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 60px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    margin-bottom: 10px;
+}
+
+.profile p {
+    color: #003366;
+    font-weight: bold;
+}
+
+
+.sidebar button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    background: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: 0.3s ease-in-out;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar button:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+}
+
+.logout {
+    background: #dc3545;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.logout img {
+    margin-right: 8px;
+}
+
+.logout a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.logout:hover {
+    background: #b22234;
+    transform: scale(1.05);
+}
+
+.home a {
+    text-decoration: none;
+    color: white;
+}
+
+.about a {
+    text-decoration: none;
+    color: white;
+}
+
+.settings a {
+    text-decoration: none;
+    color: white
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e3f2fd;
+    color: #333;
+}
+
+.header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 30px;
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    width: 80%;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.section-box {
+    text-align: left;
+    margin-top: 20px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.5);
+    transition: transform 0.3s ease-in-out;
+}
+
+.section-box:hover {
+    transform: translateY(-5px);
+}
+
+.feature-box {
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 15px 0;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 123, 255, 0.4);
+    text-align: left;
+}
+
+.highlighted-heading {
+    color: black;
+    font-family: 'Georgia', serif;
+    font-size: 24px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+}
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .main-content {
+        margin-left: 240px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar {
+        width: 180px;
+        padding: 15px;
+    }
+
+    .sidebar button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        padding: 20px;
+    }
+
+    .profile img {
+        width: 50px;
+    }
+}
+   </style>
+
+</head>
+
+<body>
+    <nav>
+        <a href="getstartedpage.html">BUDGETNEST</a>
+        <div class="nav-links">
+            <a href="homepage.html">Home</a>
+            <a href="reports.html">Reports</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </nav>
+
+   
+    <div class="container">
+        
+
+        <div class="section-box">
+            <h3 class="highlighted-heading">BudgetNest</h3>
+            <p>Budget Nest is a comprehensive tool designed to help organizations and individuals efficiently manage
+                their financial resources. With features such as budget allocation, expense tracking, and financial
+                reporting, this system ensures that projects remain within budget while maximizing efficiency. Whether
+                for business or personal use, this platform provides a seamless and user-friendly experience for
+                financial planning and management.</p>
+        </div>
+
+        
+        <div class="section-box">
+            <h3 class="highlighted-heading">How to Use Budget Nest</h3>
+            <div class="feature-box">
+                <h4>1. Create an Account</h4>
+                <p>Sign up with your email and set up your profile to start managing your budgets.</p>
+            </div>
+            <div class="feature-box">
+                <h4>2. Set Up a Budget</h4>
+                <p>Define your budget categories, allocate funds, and set spending limits.</p>
+            </div>
+            <div class="feature-box">
+                <h4>3. Add Expenses</h4>
+                <p>Log your expenses manually or import transactions for automatic categorization.</p>
+            </div>
+            <div class="feature-box">
+                <h4>4. Monitor Performance</h4>
+                <p>Use real-time analytics and reports to track your financial health.</p>
+            </div>
+            <div class="feature-box">
+                <h4>5. Adjust and Optimize</h4>
+                <p>Modify your budget based on insights and ensure financial efficiency.</p>
+            </div>
+        </div>
+
+        <div class="section-box">
+            <h3 class="highlighted-heading">Project Guidelines</h3>
+            <div class="feature-box">
+                <h4>1. User Accessibility</h4>
+                <p>Ensure that the project is easy to use for all users, including those with minimal technical
+                    knowledge.</p>
+            </div>
+            <div class="feature-box">
+                <h4>2. Data Security</h4>
+                <p>Implement strong security measures to protect financial data from unauthorized access.</p>
+            </div>
+            <div class="feature-box">
+                <h4>3. Scalability</h4>
+                <p>Design the system to handle increasing amounts of data and users without performance issues.</p>
+            </div>
+            <div class="feature-box">
+                <h4>4. User Roles & Permissions</h4>
+                <p>Define clear roles and permissions to ensure secure and organized access control.</p>
+            </div>
+            <div class="feature-box">
+                <h4>5. Regular Updates & Maintenance</h4>
+                <p>Keep the system up-to-date with new features and security patches.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

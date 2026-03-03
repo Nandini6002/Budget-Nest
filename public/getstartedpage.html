@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started Page</title>
+    <link rel="stylesheet" href="stylegp1.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #b7d7f3;
+            color: #333;
+        }
+
+        nav {
+            background-color: rgb(29, 169, 194);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #004e7c;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav a {
+                margin: 10px 0;
+            }
+        }
+
+        header {
+            background: linear-gradient(90deg, white, rgb(148, 212, 186));
+            padding: 80px 20px 30px;
+            text-align: center;
+            font-size: 24px;
+            color: #2d2d2d;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .heading {
+            background: #e6f2ff;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2.forcolor {
+            text-align: center;
+            margin: 15px auto;
+            font-weight: 400;
+            color: #333;
+        }
+
+        button {
+            margin: 10px 10px;
+            padding: 12px 25px;
+            background-color: rgb(29, 169, 194);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218aa6;
+        }
+
+        .section {
+            margin: 40px 0;
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .section h2 {
+            color: #1c6b80;
+            margin-bottom: 15px;
+        }
+
+        .feature-box,
+        .benefit-box {
+            margin: 15px 0;
+            background: #f1faff;
+            padding: 15px;
+            border-left: 5px solid rgb(29, 169, 194);
+            border-radius: 8px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .get.started {
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        .get.started h2 {
+            margin-bottom: 20px;
+            color: #1b4f5f;
+        }
+    </style>
+
+    <script>
+        function showRegistrationAlert() {
+            alert("Registration required");
+        }
+    </script>
+</head>
+
+<body>
+    <nav>
+        <a href="getstartedpage.html">BUDGETNEST</a>
+        <div class="nav-links">
+            <a href="homepage.html" >Home</a>
+            <a href="#" onclick="showRegistrationAlert()">Reports</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Budget Nest - Plan Your Penny</h1>
+    </header>
+
+    <div class="container">
+        <h1 class="heading">Track your Expenses using BudgetNest</h1>
+        <h2 class="forcolor">Budget Nest is a budget management system designed to help individuals and organizations track their income,
+            expenses, and savings efficiently.</h2>
+        <div style="text-align: center;">
+            <button><a href="homepage.html">Get Started</a></button>
+            <button><a href="#key-features">Learn More</a></button>
+        </div>
+
+        <div class="section">
+            <h2>Budget Nest is what you need to Track Your Budget</h2>
+            <p>Budget Nest serves as a personal financial assistant, ensuring users stay on top of their finances with ease.</p>
+        </div>
+
+        <img src="budget.png.jpeg" alt="not found" id="key-features">
+
+        <div class="section key-features">
+            <h2>Key Features of Budget Nest</h2>
+            <div class="feature-box"><strong>Income & Expense Tracking</strong><br> Record and categorize transactions for clear financial insights.</div>
+            <div class="feature-box"><strong>Budget Planning</strong><br> Set financial goals and allocate funds accordingly.</div>
+            <div class="feature-box"><strong>Savings Management</strong><br> Monitor savings progress and set targets.</div>
+            <div class="feature-box"><strong>Expense Reports & Analytics</strong><br> Generate detailed reports to analyze spending habits.</div>
+            <div class="feature-box"><strong>Multi-User Access</strong><br> Enable collaborative budgeting for families or teams.</div>
+            <div class="feature-box"><strong>Alerts & Reminders</strong><br> Get notifications for bill payments and budget limits.</div>
+        </div>
+
+        <div class="section benefits">
+            <h2>Benefits</h2>
+            <div class="benefit-box">Helps in reducing unnecessary expenses.</div>
+            <div class="benefit-box">Encourages financial discipline.</div>
+            <div class="benefit-box">Provides a clear understanding of financial health.</div>
+            <div class="benefit-box">Simplifies money management with automated tracking.</div>
+        </div>
+
+        <div class="get started">
+            <h2>Let’s start your journey with Budget Nest</h2>
+            <button><a href="homepage.html">Get started</a></button>
+        </div>
+    </div>
+</body>
+
+</html>
